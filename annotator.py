@@ -172,6 +172,7 @@ class Annotator:
             self.drag_end = None
 
             while running:
+                next_image = False
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         running = False
@@ -228,6 +229,7 @@ class Annotator:
                                     self.rel_path, self.label_chosen, *self.bbox_orig)
                                 self.saved_count += 1
                                 self.current_idx += 1
+                                next_image = True
                                 break
                             elif event.key == pygame.K_r:
                                 self.state = "IDLE"
@@ -236,6 +238,8 @@ class Annotator:
                                 self.label_chosen = ""
 
                 if not running:
+                    break
+                if next_image:
                     break
 
                 self._build_display()
