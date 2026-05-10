@@ -5,7 +5,8 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11.14"
 dependencies = [
-    "opencv-python>=4.13.0.92",
+    "opencv-python-headless>=4.13.0.92",
     "pillow>=12.2.0",
+    "pygame>=2.6.1",
     "tqdm>=4.67.3",
 ]
