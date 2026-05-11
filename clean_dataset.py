@@ -8,7 +8,7 @@ from tqdm import tqdm
 
 
 BASE_DIR = Path("chest_xray")
-SPLITS = ["train", "val", "test"]
+SPLITS = ["train", "test"]
 CLASSES = ["NORMAL", "PNEUMONIA"]
 EXTENSIONS = {".jpeg", ".jpg"}
 

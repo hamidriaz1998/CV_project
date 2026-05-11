@@ -7,10 +7,12 @@ Computer Vision project for detecting pneumonia from chest X-ray images using de
 ```
 .
 ├── chest_xray/              # Dataset — see download instructions below
-│   ├── train/               #   ├── NORMAL/
-│   │   └── PNEUMONIA/       #   └── ...
-│   ├── val/
+│   ├── train/
+│   │   ├── NORMAL/
+│   │   └── PNEUMONIA/
 │   └── test/
+│       ├── NORMAL/
+│       └── PNEUMONIA/
 ├── docs/
 │   ├── week1_dataset_proposal/
 │   │   └── dataset_proposal.md   # Week 1 dataset proposal document
@@ -30,50 +32,25 @@ uv sync
 
 ## Dataset Download
 
-Dataset: [Chest X-Ray Images (Pneumonia)](https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia) by Kermany et al.
+**Dataset:** Chest X-Ray Images (Pneumonia) — Wang et al. 2017
+**Source:** [Mendeley Data](https://data.mendeley.com/datasets/rscbjbr9sj/2)
+**Paper:** [Cell 2018](https://www.cell.com/cell/fulltext/S0092-8674(18)30154-5)
+**Citation:** Wang, X. et al. "ChestX-ray8: Hospital-scale Chest X-ray Database and Benchmarks." arXiv:1705.02315, 2017. *(Dataset hosted on Mendeley by Kermany et al.)*
 
-### Option 1 — kagglehub (recommended)
-
-```bash
-uv add kagglehub
-uv run python -c "
-import kagglehub
-path = kagglehub.dataset_download('paultimothymooney/chest-xray-pneumonia')
-print(f'Downloaded to: {path}')
-"
-```
-
-Then copy or symlink the `chest_xray` folder to the project root.
-
-### Option 2 — Kaggle CLI
+Download `ChestXRay2017.zip` (1.15 GB) from the Mendeley page, place it in the project root, then:
 
 ```bash
-kaggle datasets download paultimothymooney/chest-xray-pneumonia
-unzip chest-xray-pneumonia.zip
+unzip ChestXRay2017.zip
+# Cleanup any nested dirs or macOS junk if present
+find chest_xray -mindepth 2 -maxdepth 2 -type d | head -20
+ls chest_xray/       # should show: train/  test/
 ```
 
-### Option 3 — Manual
-
-Download the zip from [Kaggle](https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia) and place `chest-xray-pneumonia.zip` in the project root.
-
-### Post-extraction cleanup
-
-The zip contains an extra nested `chest_xray/chest_xray/` directory and a `__MACOSX/` junk folder. Run these commands to clean up:
-
-```bash
-unzip chest-xray-pneumonia.zip
-rm -rf chest_xray/chest_xray chest_xray/__MACOSX
-ls chest_xray/       # should show: train/  val/  test/
-```
-
-Expected structure after cleanup:
+The dataset contains `train/` and `test/` splits only (no `val/` split).
 
 ```
 chest_xray/
 ├── train/
-│   ├── NORMAL/
-│   └── PNEUMONIA/
-├── val/
 │   ├── NORMAL/
 │   └── PNEUMONIA/
 └── test/
@@ -89,12 +66,11 @@ Removes corrupt images, deduplicates by MD5 hash, resizes all images to 224×224
 uv run python clean_dataset.py
 ```
 
-Output:
+Output after running on the downloaded dataset:
 ```
 Split     Initial  Corrupt Duplicates    Final
 ------   --------  ------- ----------   ------
-train       5216        0         26     5190
-val           16        0          0       16
+train       5232        0         26     5206
 test         624        0          6      618
 ------   --------  ------- ----------   ------
 TOTAL       5856        0         32     5824

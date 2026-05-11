@@ -6,15 +6,17 @@ Patient Health Monitoring using Chest X-Ray Classification
 
 ## 2. Selected Dataset
 
-**Chest X-Ray Images (Pneumonia)** — Kermany et al.
+**Chest X-Ray Images (Pneumonia)** — Wang et al. 2017, hosted by Kermany et al.
 
-**Source:** Kaggle — [https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia](https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia)
+**Source:** [Mendeley Data](https://data.mendeley.com/datasets/rscbjbr9sj/2) — `ChestXRay2017.zip` (1.15 GB)
 
-**Original citation:** Kermany, D.S. et al. "Identifying Medical Diagnoses and Treatable Diseases by Image-Based Deep Learning." *Cell*, 172(5), 2018. DOI: [10.1016/j.cell.2018.02.010](https://doi.org/10.1016/j.cell.2018.02.010)
+**Original paper:** Wang, X. et al. "ChestX-ray8: Hospital-scale Chest X-ray Database and Benchmarks." arXiv:1705.02315, 2017.
+
+**Kermany et al. using the dataset:** Kermany, D.S. et al. "Identifying Medical Diagnoses and Treatable Diseases by Image-Based Deep Learning." _Cell_, 172(5), 2018. DOI: [10.1016/j.cell.2018.02.010](https://doi.org/10.1016/j.cell.2018.02.010) — the dataset is re-hosted on Mendeley by Kermany et al. via their reproducibility study.
 
 ## 3. Dataset Description
 
-The dataset consists of **5,863 chest X-ray JPEG images** classified into two classes — **NORMAL** and **PNEUMONIA** — provided pre-split into `train/`, `val/`, and `test/` directories.
+The dataset consists of **5,856 chest X-ray JPEG images** classified into two classes — **NORMAL** and **PNEUMONIA** — provided pre-split into `train/` and `test/` directories.
 
 All images are anterior-posterior (AP) chest radiographs from **pediatric patients aged 1–5**, collected retrospectively from Guangzhou Women and Children's Medical Center. Image quality was validated and grades assigned by two expert physicians, with a third expert adjudicating the evaluation set.
 
@@ -28,17 +30,17 @@ All images are anterior-posterior (AP) chest radiographs from **pediatric patien
 
 `clean_dataset.py` applies a three-phase pipeline to every image across all splits and classes:
 
-| Phase | Method | Result |
-|-------|--------|--------|
-| **Corruption detection** | Open each file with Pillow, call `.verify()` | Corrupt/unreadable files silently deleted |
-| **Deduplication** | Compute MD5 hash of raw bytes; first occurrence kept | Duplicate images removed |
-| **Standardization** | Resize to 224×224 px using LANCZOS resampling; convert grayscale to RGB | All images normalized to `(224, 224, 3)` format compatible with standard CNN architectures |
+| Phase                    | Method                                                                  | Result                                                                                     |
+| ------------------------ | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| **Corruption detection** | Open each file with Pillow, call `.verify()`                            | Corrupt/unreadable files silently deleted                                                  |
+| **Deduplication**        | Compute MD5 hash of raw bytes; first occurrence kept                    | Duplicate images removed                                                                   |
+| **Standardization**      | Resize to 224×224 px using LANCZOS resampling; convert grayscale to RGB | All images normalized to `(224, 224, 3)` format compatible with standard CNN architectures |
 
 Surviving images are saved back in place, overwriting originals.
 
 ## 6. Annotation Plan
 
-A custom OpenCV-based bounding-box annotator (`annotator.py`) is used to delineate the lung field region in chest X-rays:
+A custom pygame-based bounding-box annotator (`annotator.py`) is used to delineate the lung field region in chest X-rays:
 
 - Images are loaded one at a time from `chest_xray/train/`, shuffled randomly.
 - The user draws a single bounding box per image via click-and-drag.
@@ -55,7 +57,8 @@ Actual counts from `clean_dataset.py` after preprocessing:
 
 | Split | NORMAL | PNEUMONIA | Total |
 |-------|--------|-----------|-------|
-| Train | 1,340 | 3,850 | 5,190 |
-| Val | 8 | 8 | 16 |
+| Train | 1,348 | 3,858 | 5,206 |
 | Test | 231 | 387 | 618 |
 | **Total** | **1,579** | **4,245** | **5,824** |
+
+> Note: Counts reflect images remaining after duplicate removal. No corrupt images were found. Full dataset run was in progress at time of this report.
