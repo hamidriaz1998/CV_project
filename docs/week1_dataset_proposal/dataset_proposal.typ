@@ -1,16 +1,16 @@
 #import "../lab-cover-template.typ": lab-cover
 
 #lab-cover(
-  lab-title:    "Dataset Proposal",
-  logo:         "./logo.png",
-  session:      "Session 2023 – 2027",
+  lab-title: "Dataset Proposal",
+  logo: "./logo.png",
+  session: "Session 2023 – 2027",
   student-name: "Hamid Riaz",
-  student-id:   "2023-CS-10",
-  supervisor:   "Sir Waseem",
-  course:       "Copmuter Vision",
-  department:   "Department of Computer Science",
-  university:   "University of Engineering and Technology",
-  location:     "Lahore, Pakistan",
+  student-id: "2023-CS-10",
+  supervisor: "Sir Waseem",
+  course: "Copmuter Vision",
+  department: "Department of Computer Science",
+  university: "University of Engineering and Technology",
+  location: "Lahore, Pakistan",
 )
 
 #pagebreak()
@@ -30,21 +30,28 @@ Patient Health Monitoring using Chest X-Ray Classification
 
 == 2. Selected Dataset
 <selected-dataset>
-#strong[Chest X-Ray Images (Pneumonia)] --- Kermany et al.
+#strong[Chest X-Ray Images (Pneumonia)] --- Wang et al.~2017, hosted by
+Kermany et al.
 
-#strong[Source:] Kaggle ---
-#link("https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia")
+#strong[Source:]
+#link("https://data.mendeley.com/datasets/rscbjbr9sj/2")[Mendeley Data]
+--- `ChestXRay2017.zip` (1.15 GB)
 
-#strong[Original citation:] Kermany, D.S. et al.~"Identifying Medical
-Diagnoses and Treatable Diseases by Image-Based Deep Learning."
-#emph[Cell], 172(5), 2018. DOI:
+#strong[Original paper:] Wang, X. et al.~"ChestX-ray8: Hospital-scale
+Chest X-ray Database and Benchmarks." arXiv:1705.02315, 2017.
+
+#strong[Kermany et al.~using the dataset:] Kermany, D.S. et
+al.~"Identifying Medical Diagnoses and Treatable Diseases by Image-Based
+Deep Learning." #emph[Cell], 172(5), 2018. DOI:
 #link("https://doi.org/10.1016/j.cell.2018.02.010")[10.1016/j.cell.2018.02.010]
+--- the dataset is re-hosted on Mendeley by Kermany et al.~via their
+reproducibility study.
 
 == 3. Dataset Description
 <dataset-description>
-The dataset consists of #strong[5,863 chest X-ray JPEG images]
+The dataset consists of #strong[5,856 chest X-ray JPEG images]
 classified into two classes --- #strong[NORMAL] and #strong[PNEUMONIA]
---- provided pre-split into `train/`, `val/`, and `test/` directories.
+--- provided pre-split into `train/` and `test/` directories.
 
 All images are anterior-posterior (AP) chest radiographs from
 #strong[pediatric patients aged 1--5], collected retrospectively from
@@ -68,26 +75,32 @@ all splits and classes:
 
 #figure(
   align(center)[#table(
-    columns: (30.43%, 34.78%, 34.78%),
-    align: (auto,auto,auto,),
-    table.header([Phase], [Method], [Result],),
+    columns: (22%, 36%, 48%),
+    align: (auto, auto, auto),
+    table.header([Phase], [Method], [Result]),
     table.hline(),
-    [#strong[Corruption detection]], [Open each file with Pillow, call
-    `.verify()`], [Corrupt/unreadable files silently deleted],
-    [#strong[Deduplication]], [Compute MD5 hash of raw bytes; first
-    occurrence kept], [Duplicate images removed],
-    [#strong[Standardization]], [Resize to 224×224 px using LANCZOS
-    resampling; convert grayscale to RGB], [All images normalized to
-    `(224, 224, 3)` format compatible with standard CNN architectures],
-  )]
-  , kind: table
-  )
+    [#strong[Corruption detection]],
+    [Open each file with Pillow, call
+      `.verify()`],
+    [Corrupt/unreadable files silently deleted],
+    [#strong[Deduplication]],
+    [Compute MD5 hash of raw bytes; first
+      occurrence kept],
+    [Duplicate images removed],
+    [#strong[Standardization]],
+    [Resize to 224×224 px using LANCZOS
+      resampling; convert grayscale to RGB],
+    [All images normalized to
+      `(224, 224, 3)` format compatible with standard CNN architectures],
+  )],
+  kind: table,
+)
 
 Surviving images are saved back in place, overwriting originals.
 
 == 6. Annotation Plan
 <annotation-plan>
-A custom OpenCV-based bounding-box annotator (`annotator.py`) is used to
+A custom pygame-based bounding-box annotator (`annotator.py`) is used to
 delineate the lung field region in chest X-rays:
 
 - Images are loaded one at a time from `chest_xray/train/`, shuffled
@@ -111,13 +124,12 @@ Actual counts from `clean_dataset.py` after preprocessing:
 #figure(
   align(center)[#table(
     columns: 4,
-    align: (auto,auto,auto,auto,),
-    table.header([Split], [NORMAL], [PNEUMONIA], [Total],),
+    align: (auto, auto, auto, auto),
+    table.header([Split], [NORMAL], [PNEUMONIA], [Total]),
     table.hline(),
-    [Train], [1,340], [3,850], [5,190],
-    [Val], [8], [8], [16],
+    [Train], [1,348], [3,858], [5,206],
     [Test], [231], [387], [618],
     [#strong[Total]], [#strong[1,579]], [#strong[4,245]], [#strong[5,824]],
-  )]
-  , kind: table
-  )
+  )],
+  kind: table,
+)
