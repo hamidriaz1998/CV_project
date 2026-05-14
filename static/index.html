@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Annotator</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>&#x1F3F7;&#xFE0F; Image Annotator</h1>
+      <div class="header-right">
+        <span class="header-status" id="statusText">Ready</span>
+        <button id="themeToggle" class="theme-toggle" title="Toggle dark/light theme">&#x1F319;</button>
+      </div>
+    </header>
+
+    <div id="uploadArea" class="upload-zone">
+      <div class="upload-content">
+        <span class="upload-icon">&#x1F4C1;</span>
+        <p>Drag &amp; drop images here, or <strong>browse</strong> to select</p>
+        <p class="upload-hint">Supports JPG, PNG, BMP, WebP</p>
+      </div>
+      <input type="file" id="fileInput" multiple accept="image/jpeg,image/png,image/bmp,image/webp" hidden>
+    </div>
+
+    <div id="mainLayout" class="main-layout">
+      <aside class="panel gallery-panel">
+        <div class="panel-header">
+          <h3>Images</h3>
+          <span id="imageCount" class="badge">0</span>
+        </div>
+        <div id="gallery" class="gallery-grid"></div>
+      </aside>
+
+      <main class="panel canvas-panel">
+        <div class="canvas-toolbar">
+          <span id="canvasStatus">Select an image to begin</span>
+        </div>
+        <div class="canvas-wrapper" id="canvasWrapper">
+          <canvas id="annotateCanvas"></canvas>
+          <div class="canvas-placeholder" id="canvasPlaceholder">
+            <p>No image selected</p>
+          </div>
+        </div>
+      </main>
+
+      <aside class="panel controls-panel">
+        <section class="control-section">
+          <h3>Classes</h3>
+          <div id="classList" class="class-list"></div>
+          <div class="add-class-row">
+            <input type="text" id="newClassName" placeholder="Add class..." maxlength="50">
+            <button id="addClassBtn" class="btn btn-sm btn-primary" title="Add class">+</button>
+          </div>
+        </section>
+
+        <section class="control-section">
+          <h3>Actions</h3>
+          <div class="action-row">
+            <button id="saveBtn" class="btn btn-success" disabled>&#x1F4BE; Save Annotation</button>
+            <button id="clearBtn" class="btn btn-outline">&#x2716; Clear</button>
+          </div>
+          <div class="draw-info" id="drawInfo">Select a class, then draw a box on the image</div>
+        </section>
+
+        <section class="control-section annotations-section">
+          <h3>Annotations <span id="annCount" class="badge">0</span></h3>
+          <div id="annotationList" class="annotation-list"></div>
+        </section>
+
+        <section class="control-section">
+          <h3>Export</h3>
+          <div class="export-row">
+            <select id="exportFormat" class="select">
+              <option value="json">JSON</option>
+              <option value="csv">CSV</option>
+              <option value="coco">COCO</option>
+            </select>
+            <button id="exportBtn" class="btn btn-primary">&#x1F4E5; Download</button>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

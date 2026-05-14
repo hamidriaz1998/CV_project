@@ -1,258 +1,278 @@
 import csv
-import os
-import random
+import io
+import json
+from datetime import datetime
 from pathlib import Path
+from typing import List
 
-import cv2
-import numpy as np
-import pygame
+from fastapi import FastAPI, File, UploadFile, HTTPException, Query
+from fastapi.responses import FileResponse, HTMLResponse, StreamingResponse
+from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel
+from PIL import Image
 
+app = FastAPI(title="Image Annotator")
 
-TRAIN_DIR = Path("chest_xray/train")
-ANNOTATIONS_FILE = "annotations.csv"
-CLASSES = ["NORMAL", "PNEUMONIA"]
-WINDOW_WIDTH = 900
-WINDOW_HEIGHT = 700
-TARGET_ANNOTATIONS = 20
+BASE_DIR = Path(__file__).parent
+UPLOAD_DIR = BASE_DIR / "uploads"
+ANNOTATIONS_FILE = BASE_DIR / "annotations.json"
+CLASSES_FILE = BASE_DIR / "classes.json"
+STATIC_DIR = BASE_DIR / "static"
 
+UPLOAD_DIR.mkdir(exist_ok=True)
+STATIC_DIR.mkdir(exist_ok=True)
 
-class Annotator:
-    def __init__(self):
-        self.annotated = self._load_annotated()
-        self.images = self._collect_images()
-        self.total = len(self.images)
-        self.current_idx = 0
-        self.saved_count = 0
+# --- Models ---
 
-        pygame.init()
-        pygame.display.set_caption("Annotator — 0/20 done")
-        self.window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
-        self.font = pygame.font.SysFont("monospace", 20)
-        self.clock = pygame.time.Clock()
+class AnnotationIn(BaseModel):
+    filename: str
+    label: str
+    x1: int
+    y1: int
+    x2: int
+    y2: int
 
-        self.state = "IDLE"
-        self.bbox_disp = None
-        self.bbox_orig = None
-        self.label_chosen = ""
-        self.drag_start = None
-        self.drag_end = None
+# --- In-memory state ---
 
-        self.img_original = None
-        self.img_surface = None
-        self.scale = 1.0
-        self.offset_x = 0
-        self.offset_y = 0
-        self.disp_w = 0
-        self.disp_h = 0
-        self.current_cls = ""
-        self.current_fname = ""
-        self.rel_path = ""
+annotations: List[dict] = []
+next_ann_id = 1
+classes: List[str] = []
 
-    def _load_annotated(self):
-        if not os.path.exists(ANNOTATIONS_FILE):
-            return set()
+# --- Persistence ---
+
+def _load_data():
+    global annotations, next_ann_id, classes
+
+    if ANNOTATIONS_FILE.exists():
         with open(ANNOTATIONS_FILE) as f:
-            reader = csv.DictReader(f)
-            return {row["filename"] for row in reader}
+            data = json.load(f)
+        annotations = []
+        for i, item in enumerate(data, 1):
+            for key in ("x1", "y1", "x2", "y2"):
+                if key in item:
+                    item[key] = int(item[key])
+            item.setdefault("id", str(i))
+            item.setdefault("created_at", "")
+            for key in ("filename", "label", "x1", "y1", "x2", "y2"):
+                item.setdefault(key, "" if key in ("filename", "label") else 0)
+            annotations.append(item)
+        next_ann_id = max(int(a["id"]) for a in annotations) + 1 if annotations else 1
+    else:
+        annotations = []
+        next_ann_id = 1
 
-    def _collect_images(self):
-        images = []
-        for cls in CLASSES:
-            dirpath = TRAIN_DIR / cls
-            if not dirpath.exists():
-                continue
-            for fname in sorted(os.listdir(dirpath)):
-                if fname.lower().endswith((".jpeg", ".jpg")):
-                    rel_path = f"train/{cls}/{fname}"
-                    if rel_path not in self.annotated:
-                        images.append((dirpath / fname, cls, fname, rel_path))
-        random.shuffle(images)
-        return images
+    if CLASSES_FILE.exists():
+        with open(CLASSES_FILE) as f:
+            classes = json.load(f)
+    else:
+        classes = ["NORMAL", "PNEUMONIA"]
+        _save_classes()
 
-    def _save_annotation(self, filename, label, x1, y1, x2, y2):
-        write_header = not os.path.exists(ANNOTATIONS_FILE)
-        with open(ANNOTATIONS_FILE, "a", newline="") as f:
-            writer = csv.writer(f)
-            if write_header:
-                writer.writerow(["filename", "label", "x1", "y1", "x2", "y2"])
-            writer.writerow([filename, label, x1, y1, x2, y2])
+def _save_annotations():
+    with open(ANNOTATIONS_FILE, "w") as f:
+        json.dump(annotations, f, indent=2)
 
-    def _load_image(self, path):
-        img = cv2.imread(str(path))
-        if img is None:
-            return None
-        if len(img.shape) == 2:
-            img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
-        return cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+def _save_classes():
+    with open(CLASSES_FILE, "w") as f:
+        json.dump(classes, f, indent=2)
 
-    def _scale_to_fit(self, w, h):
-        scale = min(WINDOW_WIDTH / w, WINDOW_HEIGHT / h)
-        new_w = int(w * scale)
-        new_h = int(h * scale)
-        ox = (WINDOW_WIDTH - new_w) // 2
-        oy = (WINDOW_HEIGHT - new_h) // 2
-        return scale, new_w, new_h, ox, oy
+def _get_image_size(filename):
+    path = UPLOAD_DIR / filename
+    try:
+        with Image.open(path) as img:
+            return img.size
+    except (FileNotFoundError, OSError):
+        return (0, 0)
 
-    def _render_image(self):
-        h, w = self.img_original.shape[:2]
-        surf = pygame.image.frombuffer(self.img_original.tobytes(), (w, h), "RGB")
-        self.img_surface = pygame.transform.scale(surf, (self.disp_w, self.disp_h))
+# --- Static files ---
 
-    def _clamp_display_coord(self, x, y):
-        cx = max(0, min(x, self.disp_w - 1))
-        cy = max(0, min(y, self.disp_h - 1))
-        return cx, cy
+app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
-    def _display_to_orig(self, dx, dy):
-        return int(dx / self.scale), int(dy / self.scale)
+# --- Routes ---
 
-    def _build_display(self):
-        self.window.fill((30, 30, 30))
-        self.window.blit(self.img_surface, (self.offset_x, self.offset_y))
+@app.get("/")
+async def root():
+    html_path = STATIC_DIR / "index.html"
+    if html_path.exists():
+        return HTMLResponse(html_path.read_text(encoding="utf-8"))
+    return {"message": "Annotator API is running. Create static/index.html for the UI."}
 
-        text = self.font.render(self.current_fname, True, (0, 255, 0))
-        self.window.blit(text, (10, 10))
+@app.get("/images")
+async def list_images():
+    files = []
+    for f in sorted(UPLOAD_DIR.iterdir()):
+        if f.suffix.lower() in (".jpg", ".jpeg", ".png", ".bmp", ".webp"):
+            files.append({"filename": f.name, "size": f.stat().st_size})
+    return files
 
-        progress = f"{self.saved_count} / {TARGET_ANNOTATIONS} done"
-        text = self.font.render(progress, True, (0, 255, 0))
-        self.window.blit(text, (WINDOW_WIDTH - text.get_width() - 10, 10))
+@app.post("/upload")
+async def upload_images(files: List[UploadFile] = File(...)):
+    uploaded = []
+    for file in files:
+        content = await file.read()
+        (UPLOAD_DIR / file.filename).write_bytes(content)
+        uploaded.append(file.filename)
+    return {"uploaded": uploaded}
 
-        if self.state == "DRAGGING" and self.drag_start and self.drag_end:
-            sx, sy = self.drag_start
-            ex, ey = self.drag_end
-            x1, y1 = min(sx, ex), min(sy, ey)
-            x2, y2 = max(sx, ex), max(sy, ey)
-            pygame.draw.rect(self.window, (255, 0, 0),
-                             (x1 + self.offset_x, y1 + self.offset_y, x2 - x1, y2 - y1), 2)
-        elif self.state == "BOX_DRAWN" and self.bbox_disp:
-            x1, y1, x2, y2 = self.bbox_disp
-            pygame.draw.rect(self.window, (255, 0, 0),
-                             (x1 + self.offset_x, y1 + self.offset_y, x2 - x1, y2 - y1), 2)
+@app.get("/images/{name:path}")
+async def get_image(name: str):
+    path = UPLOAD_DIR / name
+    if not path.exists():
+        raise HTTPException(404, "Image not found")
+    return FileResponse(path)
 
-        if self.state == "IDLE":
-            text = self.font.render("Click and drag to draw bounding box", True, (255, 255, 0))
-            self.window.blit(text, (10, WINDOW_HEIGHT - 30))
-        elif self.state == "BOX_DRAWN":
-            label_val = self.label_chosen if self.label_chosen else "?"
-            text = f"[N] Normal  [P] Pneumonia  [S] Save  [R] Redo  [Q] Quit  Label: {label_val}"
-            self.window.blit(self.font.render(text, True, (255, 255, 0)),
-                             (10, WINDOW_HEIGHT - 30))
+@app.get("/annotations")
+async def get_annotations():
+    return annotations
 
-        pygame.display.flip()
+@app.post("/annotate")
+async def create_annotation(ann: AnnotationIn):
+    global next_ann_id
 
-    def run(self):
-        if self.total == 0:
-            print("All images already annotated. Nothing to do.")
-            pygame.quit()
-            return
+    x1, x2 = sorted((ann.x1, ann.x2))
+    y1, y2 = sorted((ann.y1, ann.y2))
 
-        print(f"Images available: {self.total}")
-        print(f"Target: {TARGET_ANNOTATIONS} annotations")
-        running = True
+    img_path = UPLOAD_DIR / ann.filename
+    if not img_path.exists():
+        raise HTTPException(400, f"Image '{ann.filename}' not found in uploads")
 
-        while running and self.current_idx < self.total and self.saved_count < TARGET_ANNOTATIONS:
-            img_path, self.current_cls, self.current_fname, self.rel_path = \
-                self.images[self.current_idx]
+    entry = {
+        "filename": ann.filename,
+        "label": ann.label,
+        "x1": x1,
+        "y1": y1,
+        "x2": x2,
+        "y2": y2,
+        "id": str(next_ann_id),
+        "created_at": datetime.now().isoformat(),
+    }
+    next_ann_id += 1
+    annotations.append(entry)
+    _save_annotations()
+    return entry
 
-            self.img_original = self._load_image(img_path)
-            if self.img_original is None:
-                self.current_idx += 1
-                continue
+@app.delete("/annotate/{ann_id}")
+async def delete_annotation(ann_id: str):
+    global annotations
+    annotations = [a for a in annotations if a["id"] != ann_id]
+    _save_annotations()
+    return {"ok": True}
 
-            h, w = self.img_original.shape[:2]
-            self.scale, self.disp_w, self.disp_h, self.offset_x, self.offset_y = \
-                self._scale_to_fit(w, h)
-            self._render_image()
+@app.get("/classes")
+async def get_classes():
+    return classes
 
-            self.state = "IDLE"
-            self.bbox_disp = None
-            self.bbox_orig = None
-            self.label_chosen = ""
-            self.drag_start = None
-            self.drag_end = None
+@app.post("/classes")
+async def add_class(name: str = Query(...)):
+    name = name.upper().strip()
+    if not name:
+        raise HTTPException(400, "Class name cannot be empty")
+    if name in classes:
+        raise HTTPException(400, f"Class '{name}' already exists")
+    classes.append(name)
+    _save_classes()
+    return classes
 
-            while running:
-                next_image = False
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        running = False
-                        break
+@app.delete("/classes/{name}")
+async def remove_class(name: str):
+    name = name.upper().strip()
+    if name not in classes:
+        raise HTTPException(404, f"Class '{name}' not found")
+    classes.remove(name)
+    _save_classes()
+    return classes
 
-                    if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                        if self.state == "IDLE":
-                            x = event.pos[0] - self.offset_x
-                            y = event.pos[1] - self.offset_y
-                            if 0 <= x < self.disp_w and 0 <= y < self.disp_h:
-                                self.drag_start = (x, y)
-                                self.drag_end = (x, y)
-                                self.state = "DRAGGING"
+@app.get("/export")
+async def export_annotations(format: str = Query("json")):
+    if format == "json":
+        return _export_json()
+    elif format == "csv":
+        return _export_csv()
+    elif format == "coco":
+        return _export_coco()
+    raise HTTPException(400, f"Unsupported format: {format}")
 
-                    elif event.type == pygame.MOUSEMOTION:
-                        if self.state == "DRAGGING":
-                            x = event.pos[0] - self.offset_x
-                            y = event.pos[1] - self.offset_y
-                            self.drag_end = self._clamp_display_coord(x, y)
+def _export_json():
+    data = []
+    for a in annotations:
+        data.append({
+            "filename": a["filename"],
+            "label": a["label"],
+            "x1": a["x1"],
+            "y1": a["y1"],
+            "x2": a["x2"],
+            "y2": a["y2"],
+        })
+    return StreamingResponse(
+        io.StringIO(json.dumps(data, indent=2)),
+        media_type="application/json",
+        headers={"Content-Disposition": "attachment; filename=annotations.json"},
+    )
 
-                    elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
-                        if self.state == "DRAGGING":
-                            x = event.pos[0] - self.offset_x
-                            y = event.pos[1] - self.offset_y
-                            cx, cy = self._clamp_display_coord(x, y)
-                            sx, sy = self.drag_start
-                            x1, y1 = min(sx, cx), min(sy, cy)
-                            x2, y2 = max(sx, cx), max(sy, cy)
-                            if x2 - x1 < 5 or y2 - y1 < 5:
-                                self.state = "IDLE"
-                            else:
-                                self.bbox_disp = (x1, y1, x2, y2)
-                                ox1, oy1 = self._display_to_orig(x1, y1)
-                                ox2, oy2 = self._display_to_orig(x2, y2)
-                                self.bbox_orig = (ox1, oy1, ox2, oy2)
-                                self.state = "BOX_DRAWN"
-                            self.drag_start = None
-                            self.drag_end = None
+def _export_csv():
+    output = io.StringIO()
+    writer = csv.writer(output)
+    writer.writerow(["filename", "label", "x1", "y1", "x2", "y2"])
+    for a in annotations:
+        writer.writerow([a["filename"], a["label"], a["x1"], a["y1"], a["x2"], a["y2"]])
+    output.seek(0)
+    return StreamingResponse(
+        output,
+        media_type="text/csv",
+        headers={"Content-Disposition": "attachment; filename=annotations.csv"},
+    )
 
-                    elif event.type == pygame.KEYDOWN:
-                        if event.key == pygame.K_q:
-                            running = False
-                            break
+def _export_coco():
+    cat_names = sorted(set(a["label"] for a in annotations))
+    cat_map = {name: i + 1 for i, name in enumerate(cat_names)}
 
-                        if self.state == "BOX_DRAWN":
-                            if event.key == pygame.K_n:
-                                self.label_chosen = "NORMAL"
-                            elif event.key == pygame.K_p:
-                                self.label_chosen = "PNEUMONIA"
-                            elif event.key == pygame.K_s:
-                                if not self.label_chosen:
-                                    continue
-                                self._save_annotation(
-                                    self.rel_path, self.label_chosen, *self.bbox_orig)
-                                self.saved_count += 1
-                                self.current_idx += 1
-                                next_image = True
-                                break
-                            elif event.key == pygame.K_r:
-                                self.state = "IDLE"
-                                self.bbox_disp = None
-                                self.bbox_orig = None
-                                self.label_chosen = ""
+    img_ids = {}
+    images = []
+    coco_annotations = []
 
-                if not running:
-                    break
-                if next_image:
-                    break
+    for a in annotations:
+        fname = a["filename"]
+        if fname not in img_ids:
+            img_id = len(img_ids) + 1
+            img_ids[fname] = img_id
+            w, h = _get_image_size(fname)
+            images.append({
+                "id": img_id,
+                "file_name": fname,
+                "width": w,
+                "height": h,
+            })
 
-                self._build_display()
-                pygame.display.set_caption(
-                    f"Annotator — {self.saved_count}/{TARGET_ANNOTATIONS} done")
-                self.clock.tick(60)
+        img_id = img_ids[fname]
+        bw = a["x2"] - a["x1"]
+        bh = a["y2"] - a["y1"]
+        ann_id = len(coco_annotations) + 1
+        coco_annotations.append({
+            "id": ann_id,
+            "image_id": img_id,
+            "category_id": cat_map[a["label"]],
+            "bbox": [a["x1"], a["y1"], bw, bh],
+            "area": bw * bh,
+            "iscrowd": 0,
+        })
 
-        pygame.quit()
-        if self.saved_count >= TARGET_ANNOTATIONS:
-            print(f"\u2705 {TARGET_ANNOTATIONS} annotations complete!")
-        else:
-            print(f"Saved progress. {self.saved_count} annotations saved.")
+    categories = [
+        {"id": cid, "name": name}
+        for name, cid in sorted(cat_map.items(), key=lambda x: x[1])
+    ]
 
+    coco = {
+        "images": images,
+        "annotations": coco_annotations,
+        "categories": categories,
+    }
 
-if __name__ == "__main__":
-    Annotator().run()
+    return StreamingResponse(
+        io.StringIO(json.dumps(coco, indent=2)),
+        media_type="application/json",
+        headers={"Content-Disposition": "attachment; filename=annotations_coco.json"},
+    )
+
+# --- Startup ---
+
+_load_data()
