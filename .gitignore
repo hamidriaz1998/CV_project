@@ -13,3 +13,9 @@ wheels/
 chest_xray/
 *.pdf
 annotations.csv
+uploads/
+
+# Notebook-generated artifacts
+*.pth
+week2_classification/*.png
+week2_classification/*.txt
