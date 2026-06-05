@@ -1,0 +1,966 @@
+{
+  "images": [
+    {
+      "id": 1,
+      "file_name": "NORMAL/IM-0115-0001.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 2,
+      "file_name": "NORMAL/IM-0117-0001.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 3,
+      "file_name": "NORMAL/IM-0119-0001.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 4,
+      "file_name": "NORMAL/IM-0122-0001.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 5,
+      "file_name": "NORMAL/IM-0125-0001.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 6,
+      "file_name": "NORMAL/IM-0127-0001.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 7,
+      "file_name": "NORMAL/IM-0128-0001.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 8,
+      "file_name": "NORMAL/IM-0129-0001.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 9,
+      "file_name": "NORMAL/IM-0131-0001.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 10,
+      "file_name": "NORMAL/IM-0133-0001.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 11,
+      "file_name": "NORMAL/IM-0135-0001.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 12,
+      "file_name": "NORMAL/IM-0137-0001.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 13,
+      "file_name": "NORMAL/IM-0140-0001.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 14,
+      "file_name": "NORMAL/IM-0141-0001.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 15,
+      "file_name": "NORMAL/IM-0143-0001.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 16,
+      "file_name": "NORMAL/IM-0145-0001.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 17,
+      "file_name": "NORMAL/IM-0147-0001.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 18,
+      "file_name": "NORMAL/IM-0149-0001.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 19,
+      "file_name": "NORMAL/IM-0151-0001.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 20,
+      "file_name": "NORMAL/IM-0152-0001.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 21,
+      "file_name": "NORMAL/IM-0154-0001.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 22,
+      "file_name": "NORMAL/IM-0156-0001.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 23,
+      "file_name": "NORMAL/IM-0158-0001.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 24,
+      "file_name": "NORMAL/IM-0160-0001.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 25,
+      "file_name": "NORMAL/IM-0162-0001.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 26,
+      "file_name": "PNEUMONIA/person1000_bacteria_2931.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 27,
+      "file_name": "PNEUMONIA/person1000_virus_1681.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 28,
+      "file_name": "PNEUMONIA/person1001_bacteria_2932.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 29,
+      "file_name": "PNEUMONIA/person1002_bacteria_2933.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 30,
+      "file_name": "PNEUMONIA/person1003_bacteria_2934.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 31,
+      "file_name": "PNEUMONIA/person1003_virus_1685.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 32,
+      "file_name": "PNEUMONIA/person1004_bacteria_2935.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 33,
+      "file_name": "PNEUMONIA/person1004_virus_1686.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 34,
+      "file_name": "PNEUMONIA/person1005_bacteria_2936.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 35,
+      "file_name": "PNEUMONIA/person1005_virus_1688.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 36,
+      "file_name": "PNEUMONIA/person1006_bacteria_2937.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 37,
+      "file_name": "PNEUMONIA/person1007_bacteria_2938.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 38,
+      "file_name": "PNEUMONIA/person1007_virus_1690.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 39,
+      "file_name": "PNEUMONIA/person1008_bacteria_2939.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 40,
+      "file_name": "PNEUMONIA/person1008_virus_1691.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 41,
+      "file_name": "PNEUMONIA/person1009_virus_1694.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 42,
+      "file_name": "PNEUMONIA/person100_virus_184.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 43,
+      "file_name": "PNEUMONIA/person1010_bacteria_2941.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 44,
+      "file_name": "PNEUMONIA/person1010_virus_1695.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 45,
+      "file_name": "PNEUMONIA/person1011_bacteria_2942.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 46,
+      "file_name": "PNEUMONIA/person1012_bacteria_2943.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 47,
+      "file_name": "PNEUMONIA/person1014_bacteria_2945.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 48,
+      "file_name": "PNEUMONIA/person1015_virus_1701.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 49,
+      "file_name": "PNEUMONIA/person1015_virus_1702.jpeg",
+      "width": 224,
+      "height": 224
+    },
+    {
+      "id": 50,
+      "file_name": "PNEUMONIA/person1016_bacteria_2947.jpeg",
+      "width": 224,
+      "height": 224
+    }
+  ],
+  "annotations": [
+    {
+      "id": 1,
+      "image_id": 1,
+      "category_id": 1,
+      "bbox": [
+        108,
+        49,
+        85,
+        106
+      ],
+      "area": 9010,
+      "iscrowd": 0
+    },
+    {
+      "id": 2,
+      "image_id": 2,
+      "category_id": 1,
+      "bbox": [
+        47,
+        50,
+        73,
+        99
+      ],
+      "area": 7227,
+      "iscrowd": 0
+    },
+    {
+      "id": 3,
+      "image_id": 3,
+      "category_id": 1,
+      "bbox": [
+        51,
+        57,
+        62,
+        83
+      ],
+      "area": 5146,
+      "iscrowd": 0
+    },
+    {
+      "id": 4,
+      "image_id": 4,
+      "category_id": 1,
+      "bbox": [
+        49,
+        60,
+        80,
+        91
+      ],
+      "area": 7280,
+      "iscrowd": 0
+    },
+    {
+      "id": 5,
+      "image_id": 5,
+      "category_id": 1,
+      "bbox": [
+        130,
+        50,
+        62,
+        68
+      ],
+      "area": 4216,
+      "iscrowd": 0
+    },
+    {
+      "id": 6,
+      "image_id": 6,
+      "category_id": 1,
+      "bbox": [
+        129,
+        43,
+        82,
+        77
+      ],
+      "area": 6314,
+      "iscrowd": 0
+    },
+    {
+      "id": 7,
+      "image_id": 7,
+      "category_id": 1,
+      "bbox": [
+        54,
+        65,
+        62,
+        68
+      ],
+      "area": 4216,
+      "iscrowd": 0
+    },
+    {
+      "id": 8,
+      "image_id": 8,
+      "category_id": 1,
+      "bbox": [
+        117,
+        64,
+        71,
+        69
+      ],
+      "area": 4899,
+      "iscrowd": 0
+    },
+    {
+      "id": 9,
+      "image_id": 9,
+      "category_id": 1,
+      "bbox": [
+        49,
+        77,
+        63,
+        62
+      ],
+      "area": 3906,
+      "iscrowd": 0
+    },
+    {
+      "id": 10,
+      "image_id": 10,
+      "category_id": 1,
+      "bbox": [
+        45,
+        70,
+        69,
+        65
+      ],
+      "area": 4485,
+      "iscrowd": 0
+    },
+    {
+      "id": 11,
+      "image_id": 11,
+      "category_id": 1,
+      "bbox": [
+        54,
+        64,
+        51,
+        77
+      ],
+      "area": 3927,
+      "iscrowd": 0
+    },
+    {
+      "id": 12,
+      "image_id": 12,
+      "category_id": 1,
+      "bbox": [
+        48,
+        46,
+        94,
+        78
+      ],
+      "area": 7332,
+      "iscrowd": 0
+    },
+    {
+      "id": 13,
+      "image_id": 13,
+      "category_id": 1,
+      "bbox": [
+        39,
+        54,
+        73,
+        63
+      ],
+      "area": 4599,
+      "iscrowd": 0
+    },
+    {
+      "id": 14,
+      "image_id": 14,
+      "category_id": 1,
+      "bbox": [
+        114,
+        54,
+        55,
+        75
+      ],
+      "area": 4125,
+      "iscrowd": 0
+    },
+    {
+      "id": 15,
+      "image_id": 15,
+      "category_id": 1,
+      "bbox": [
+        39,
+        57,
+        81,
+        67
+      ],
+      "area": 5427,
+      "iscrowd": 0
+    },
+    {
+      "id": 16,
+      "image_id": 16,
+      "category_id": 1,
+      "bbox": [
+        42,
+        50,
+        79,
+        67
+      ],
+      "area": 5293,
+      "iscrowd": 0
+    },
+    {
+      "id": 17,
+      "image_id": 17,
+      "category_id": 1,
+      "bbox": [
+        128,
+        66,
+        50,
+        65
+      ],
+      "area": 3250,
+      "iscrowd": 0
+    },
+    {
+      "id": 18,
+      "image_id": 18,
+      "category_id": 1,
+      "bbox": [
+        35,
+        79,
+        71,
+        66
+      ],
+      "area": 4686,
+      "iscrowd": 0
+    },
+    {
+      "id": 19,
+      "image_id": 19,
+      "category_id": 1,
+      "bbox": [
+        120,
+        65,
+        54,
+        53
+      ],
+      "area": 2862,
+      "iscrowd": 0
+    },
+    {
+      "id": 20,
+      "image_id": 20,
+      "category_id": 1,
+      "bbox": [
+        41,
+        71,
+        61,
+        63
+      ],
+      "area": 3843,
+      "iscrowd": 0
+    },
+    {
+      "id": 21,
+      "image_id": 21,
+      "category_id": 1,
+      "bbox": [
+        46,
+        67,
+        79,
+        71
+      ],
+      "area": 5609,
+      "iscrowd": 0
+    },
+    {
+      "id": 22,
+      "image_id": 22,
+      "category_id": 1,
+      "bbox": [
+        31,
+        57,
+        73,
+        69
+      ],
+      "area": 5037,
+      "iscrowd": 0
+    },
+    {
+      "id": 23,
+      "image_id": 23,
+      "category_id": 1,
+      "bbox": [
+        39,
+        43,
+        72,
+        73
+      ],
+      "area": 5256,
+      "iscrowd": 0
+    },
+    {
+      "id": 24,
+      "image_id": 24,
+      "category_id": 1,
+      "bbox": [
+        120,
+        69,
+        61,
+        72
+      ],
+      "area": 4392,
+      "iscrowd": 0
+    },
+    {
+      "id": 25,
+      "image_id": 25,
+      "category_id": 1,
+      "bbox": [
+        49,
+        53,
+        95,
+        78
+      ],
+      "area": 7410,
+      "iscrowd": 0
+    },
+    {
+      "id": 26,
+      "image_id": 26,
+      "category_id": 2,
+      "bbox": [
+        40,
+        81,
+        52,
+        73
+      ],
+      "area": 3796,
+      "iscrowd": 0
+    },
+    {
+      "id": 27,
+      "image_id": 27,
+      "category_id": 2,
+      "bbox": [
+        58,
+        55,
+        30,
+        89
+      ],
+      "area": 2670,
+      "iscrowd": 0
+    },
+    {
+      "id": 28,
+      "image_id": 28,
+      "category_id": 2,
+      "bbox": [
+        63,
+        98,
+        33,
+        72
+      ],
+      "area": 2376,
+      "iscrowd": 0
+    },
+    {
+      "id": 29,
+      "image_id": 29,
+      "category_id": 2,
+      "bbox": [
+        127,
+        50,
+        42,
+        52
+      ],
+      "area": 2184,
+      "iscrowd": 0
+    },
+    {
+      "id": 30,
+      "image_id": 30,
+      "category_id": 2,
+      "bbox": [
+        42,
+        67,
+        44,
+        88
+      ],
+      "area": 3872,
+      "iscrowd": 0
+    },
+    {
+      "id": 31,
+      "image_id": 31,
+      "category_id": 2,
+      "bbox": [
+        125,
+        45,
+        56,
+        63
+      ],
+      "area": 3528,
+      "iscrowd": 0
+    },
+    {
+      "id": 32,
+      "image_id": 32,
+      "category_id": 2,
+      "bbox": [
+        46,
+        44,
+        41,
+        75
+      ],
+      "area": 3075,
+      "iscrowd": 0
+    },
+    {
+      "id": 33,
+      "image_id": 33,
+      "category_id": 2,
+      "bbox": [
+        50,
+        50,
+        50,
+        73
+      ],
+      "area": 3650,
+      "iscrowd": 0
+    },
+    {
+      "id": 34,
+      "image_id": 34,
+      "category_id": 2,
+      "bbox": [
+        42,
+        72,
+        46,
+        75
+      ],
+      "area": 3450,
+      "iscrowd": 0
+    },
+    {
+      "id": 35,
+      "image_id": 35,
+      "category_id": 2,
+      "bbox": [
+        129,
+        54,
+        42,
+        69
+      ],
+      "area": 2898,
+      "iscrowd": 0
+    },
+    {
+      "id": 36,
+      "image_id": 36,
+      "category_id": 2,
+      "bbox": [
+        65,
+        104,
+        44,
+        58
+      ],
+      "area": 2552,
+      "iscrowd": 0
+    },
+    {
+      "id": 37,
+      "image_id": 37,
+      "category_id": 2,
+      "bbox": [
+        55,
+        16,
+        35,
+        78
+      ],
+      "area": 2730,
+      "iscrowd": 0
+    },
+    {
+      "id": 38,
+      "image_id": 38,
+      "category_id": 2,
+      "bbox": [
+        60,
+        77,
+        28,
+        59
+      ],
+      "area": 1652,
+      "iscrowd": 0
+    },
+    {
+      "id": 39,
+      "image_id": 39,
+      "category_id": 2,
+      "bbox": [
+        65,
+        58,
+        43,
+        65
+      ],
+      "area": 2795,
+      "iscrowd": 0
+    },
+    {
+      "id": 40,
+      "image_id": 40,
+      "category_id": 2,
+      "bbox": [
+        45,
+        37,
+        51,
+        59
+      ],
+      "area": 3009,
+      "iscrowd": 0
+    },
+    {
+      "id": 41,
+      "image_id": 41,
+      "category_id": 2,
+      "bbox": [
+        59,
+        60,
+        44,
+        59
+      ],
+      "area": 2596,
+      "iscrowd": 0
+    },
+    {
+      "id": 42,
+      "image_id": 42,
+      "category_id": 2,
+      "bbox": [
+        57,
+        67,
+        45,
+        79
+      ],
+      "area": 3555,
+      "iscrowd": 0
+    },
+    {
+      "id": 43,
+      "image_id": 43,
+      "category_id": 2,
+      "bbox": [
+        67,
+        67,
+        43,
+        57
+      ],
+      "area": 2451,
+      "iscrowd": 0
+    },
+    {
+      "id": 44,
+      "image_id": 44,
+      "category_id": 2,
+      "bbox": [
+        22,
+        113,
+        53,
+        93
+      ],
+      "area": 4929,
+      "iscrowd": 0
+    },
+    {
+      "id": 45,
+      "image_id": 45,
+      "category_id": 2,
+      "bbox": [
+        54,
+        34,
+        60,
+        70
+      ],
+      "area": 4200,
+      "iscrowd": 0
+    },
+    {
+      "id": 46,
+      "image_id": 46,
+      "category_id": 2,
+      "bbox": [
+        48,
+        112,
+        56,
+        58
+      ],
+      "area": 3248,
+      "iscrowd": 0
+    },
+    {
+      "id": 47,
+      "image_id": 47,
+      "category_id": 2,
+      "bbox": [
+        52,
+        90,
+        49,
+        58
+      ],
+      "area": 2842,
+      "iscrowd": 0
+    },
+    {
+      "id": 48,
+      "image_id": 48,
+      "category_id": 2,
+      "bbox": [
+        35,
+        127,
+        53,
+        63
+      ],
+      "area": 3339,
+      "iscrowd": 0
+    },
+    {
+      "id": 49,
+      "image_id": 49,
+      "category_id": 2,
+      "bbox": [
+        106,
+        71,
+        33,
+        77
+      ],
+      "area": 2541,
+      "iscrowd": 0
+    },
+    {
+      "id": 50,
+      "image_id": 50,
+      "category_id": 2,
+      "bbox": [
+        54,
+        70,
+        47,
+        66
+      ],
+      "area": 3102,
+      "iscrowd": 0
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "NORMAL"
+    },
+    {
+      "id": 2,
+      "name": "PNEUMONIA"
+    }
+  ]
+}

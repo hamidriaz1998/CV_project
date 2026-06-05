@@ -1,0 +1,6 @@
+path: /home/hamid/Desktop/Uni/CV_project/week3_detection/data
+train: images/train
+val: images/val
+
+nc: 2
+names: ["NORMAL", "PNEUMONIA"]

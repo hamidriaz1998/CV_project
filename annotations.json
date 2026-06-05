@@ -1,0 +1,502 @@
+[
+  {
+    "filename": "NORMAL/IM-0115-0001.jpeg",
+    "label": "NORMAL",
+    "x1": 108,
+    "y1": 49,
+    "x2": 193,
+    "y2": 155,
+    "id": "1",
+    "created_at": "2026-06-05T23:19:10.359996"
+  },
+  {
+    "filename": "NORMAL/IM-0117-0001.jpeg",
+    "label": "NORMAL",
+    "x1": 47,
+    "y1": 50,
+    "x2": 120,
+    "y2": 149,
+    "id": "2",
+    "created_at": "2026-06-05T23:19:17.501657"
+  },
+  {
+    "filename": "NORMAL/IM-0119-0001.jpeg",
+    "label": "NORMAL",
+    "x1": 51,
+    "y1": 57,
+    "x2": 113,
+    "y2": 140,
+    "id": "3",
+    "created_at": "2026-06-05T23:19:22.134005"
+  },
+  {
+    "filename": "NORMAL/IM-0122-0001.jpeg",
+    "label": "NORMAL",
+    "x1": 49,
+    "y1": 60,
+    "x2": 129,
+    "y2": 151,
+    "id": "4",
+    "created_at": "2026-06-05T23:19:26.627569"
+  },
+  {
+    "filename": "NORMAL/IM-0125-0001.jpeg",
+    "label": "NORMAL",
+    "x1": 130,
+    "y1": 50,
+    "x2": 192,
+    "y2": 118,
+    "id": "5",
+    "created_at": "2026-06-05T23:19:30.204488"
+  },
+  {
+    "filename": "NORMAL/IM-0127-0001.jpeg",
+    "label": "NORMAL",
+    "x1": 129,
+    "y1": 43,
+    "x2": 211,
+    "y2": 120,
+    "id": "6",
+    "created_at": "2026-06-05T23:19:32.413852"
+  },
+  {
+    "filename": "NORMAL/IM-0128-0001.jpeg",
+    "label": "NORMAL",
+    "x1": 54,
+    "y1": 65,
+    "x2": 116,
+    "y2": 133,
+    "id": "7",
+    "created_at": "2026-06-05T23:19:35.522148"
+  },
+  {
+    "filename": "NORMAL/IM-0129-0001.jpeg",
+    "label": "NORMAL",
+    "x1": 117,
+    "y1": 64,
+    "x2": 188,
+    "y2": 133,
+    "id": "8",
+    "created_at": "2026-06-05T23:19:39.442961"
+  },
+  {
+    "filename": "NORMAL/IM-0131-0001.jpeg",
+    "label": "NORMAL",
+    "x1": 49,
+    "y1": 77,
+    "x2": 112,
+    "y2": 139,
+    "id": "9",
+    "created_at": "2026-06-05T23:19:48.432363"
+  },
+  {
+    "filename": "NORMAL/IM-0133-0001.jpeg",
+    "label": "NORMAL",
+    "x1": 45,
+    "y1": 70,
+    "x2": 114,
+    "y2": 135,
+    "id": "10",
+    "created_at": "2026-06-05T23:19:53.338333"
+  },
+  {
+    "filename": "NORMAL/IM-0135-0001.jpeg",
+    "label": "NORMAL",
+    "x1": 54,
+    "y1": 64,
+    "x2": 105,
+    "y2": 141,
+    "id": "11",
+    "created_at": "2026-06-05T23:19:59.455496"
+  },
+  {
+    "filename": "NORMAL/IM-0137-0001.jpeg",
+    "label": "NORMAL",
+    "x1": 48,
+    "y1": 46,
+    "x2": 142,
+    "y2": 124,
+    "id": "12",
+    "created_at": "2026-06-05T23:20:05.969098"
+  },
+  {
+    "filename": "NORMAL/IM-0140-0001.jpeg",
+    "label": "NORMAL",
+    "x1": 39,
+    "y1": 54,
+    "x2": 112,
+    "y2": 117,
+    "id": "13",
+    "created_at": "2026-06-05T23:20:09.939771"
+  },
+  {
+    "filename": "NORMAL/IM-0141-0001.jpeg",
+    "label": "NORMAL",
+    "x1": 114,
+    "y1": 54,
+    "x2": 169,
+    "y2": 129,
+    "id": "14",
+    "created_at": "2026-06-05T23:20:12.796639"
+  },
+  {
+    "filename": "NORMAL/IM-0143-0001.jpeg",
+    "label": "NORMAL",
+    "x1": 39,
+    "y1": 57,
+    "x2": 120,
+    "y2": 124,
+    "id": "15",
+    "created_at": "2026-06-05T23:20:15.252747"
+  },
+  {
+    "filename": "NORMAL/IM-0145-0001.jpeg",
+    "label": "NORMAL",
+    "x1": 42,
+    "y1": 50,
+    "x2": 121,
+    "y2": 117,
+    "id": "16",
+    "created_at": "2026-06-05T23:20:17.344425"
+  },
+  {
+    "filename": "NORMAL/IM-0147-0001.jpeg",
+    "label": "NORMAL",
+    "x1": 128,
+    "y1": 66,
+    "x2": 178,
+    "y2": 131,
+    "id": "17",
+    "created_at": "2026-06-05T23:20:19.825612"
+  },
+  {
+    "filename": "NORMAL/IM-0149-0001.jpeg",
+    "label": "NORMAL",
+    "x1": 35,
+    "y1": 79,
+    "x2": 106,
+    "y2": 145,
+    "id": "18",
+    "created_at": "2026-06-05T23:20:21.676488"
+  },
+  {
+    "filename": "NORMAL/IM-0151-0001.jpeg",
+    "label": "NORMAL",
+    "x1": 120,
+    "y1": 65,
+    "x2": 174,
+    "y2": 118,
+    "id": "19",
+    "created_at": "2026-06-05T23:20:24.331441"
+  },
+  {
+    "filename": "NORMAL/IM-0152-0001.jpeg",
+    "label": "NORMAL",
+    "x1": 41,
+    "y1": 71,
+    "x2": 102,
+    "y2": 134,
+    "id": "20",
+    "created_at": "2026-06-05T23:20:27.481517"
+  },
+  {
+    "filename": "NORMAL/IM-0154-0001.jpeg",
+    "label": "NORMAL",
+    "x1": 46,
+    "y1": 67,
+    "x2": 125,
+    "y2": 138,
+    "id": "21",
+    "created_at": "2026-06-05T23:20:31.293059"
+  },
+  {
+    "filename": "NORMAL/IM-0156-0001.jpeg",
+    "label": "NORMAL",
+    "x1": 31,
+    "y1": 57,
+    "x2": 104,
+    "y2": 126,
+    "id": "22",
+    "created_at": "2026-06-05T23:22:15.794100"
+  },
+  {
+    "filename": "NORMAL/IM-0158-0001.jpeg",
+    "label": "NORMAL",
+    "x1": 39,
+    "y1": 43,
+    "x2": 111,
+    "y2": 116,
+    "id": "23",
+    "created_at": "2026-06-05T23:22:34.160227"
+  },
+  {
+    "filename": "NORMAL/IM-0160-0001.jpeg",
+    "label": "NORMAL",
+    "x1": 120,
+    "y1": 69,
+    "x2": 181,
+    "y2": 141,
+    "id": "24",
+    "created_at": "2026-06-05T23:24:29.786814"
+  },
+  {
+    "filename": "NORMAL/IM-0162-0001.jpeg",
+    "label": "NORMAL",
+    "x1": 49,
+    "y1": 53,
+    "x2": 144,
+    "y2": 131,
+    "id": "25",
+    "created_at": "2026-06-05T23:25:36.843141"
+  },
+  {
+    "filename": "PNEUMONIA/person1000_bacteria_2931.jpeg",
+    "label": "PNEUMONIA",
+    "x1": 40,
+    "y1": 81,
+    "x2": 92,
+    "y2": 154,
+    "id": "26",
+    "created_at": "2026-06-05T23:28:17.795236"
+  },
+  {
+    "filename": "PNEUMONIA/person1000_virus_1681.jpeg",
+    "label": "PNEUMONIA",
+    "x1": 58,
+    "y1": 55,
+    "x2": 88,
+    "y2": 144,
+    "id": "27",
+    "created_at": "2026-06-05T23:28:37.557071"
+  },
+  {
+    "filename": "PNEUMONIA/person1001_bacteria_2932.jpeg",
+    "label": "PNEUMONIA",
+    "x1": 63,
+    "y1": 98,
+    "x2": 96,
+    "y2": 170,
+    "id": "28",
+    "created_at": "2026-06-05T23:28:49.015377"
+  },
+  {
+    "filename": "PNEUMONIA/person1002_bacteria_2933.jpeg",
+    "label": "PNEUMONIA",
+    "x1": 127,
+    "y1": 50,
+    "x2": 169,
+    "y2": 102,
+    "id": "29",
+    "created_at": "2026-06-05T23:28:58.989083"
+  },
+  {
+    "filename": "PNEUMONIA/person1003_bacteria_2934.jpeg",
+    "label": "PNEUMONIA",
+    "x1": 42,
+    "y1": 67,
+    "x2": 86,
+    "y2": 155,
+    "id": "30",
+    "created_at": "2026-06-05T23:29:09.990774"
+  },
+  {
+    "filename": "PNEUMONIA/person1003_virus_1685.jpeg",
+    "label": "PNEUMONIA",
+    "x1": 125,
+    "y1": 45,
+    "x2": 181,
+    "y2": 108,
+    "id": "31",
+    "created_at": "2026-06-05T23:29:15.675233"
+  },
+  {
+    "filename": "PNEUMONIA/person1004_bacteria_2935.jpeg",
+    "label": "PNEUMONIA",
+    "x1": 46,
+    "y1": 44,
+    "x2": 87,
+    "y2": 119,
+    "id": "32",
+    "created_at": "2026-06-05T23:29:21.860656"
+  },
+  {
+    "filename": "PNEUMONIA/person1004_virus_1686.jpeg",
+    "label": "PNEUMONIA",
+    "x1": 50,
+    "y1": 50,
+    "x2": 100,
+    "y2": 123,
+    "id": "33",
+    "created_at": "2026-06-05T23:29:25.703603"
+  },
+  {
+    "filename": "PNEUMONIA/person1005_bacteria_2936.jpeg",
+    "label": "PNEUMONIA",
+    "x1": 42,
+    "y1": 72,
+    "x2": 88,
+    "y2": 147,
+    "id": "34",
+    "created_at": "2026-06-05T23:29:29.039150"
+  },
+  {
+    "filename": "PNEUMONIA/person1005_virus_1688.jpeg",
+    "label": "PNEUMONIA",
+    "x1": 129,
+    "y1": 54,
+    "x2": 171,
+    "y2": 123,
+    "id": "35",
+    "created_at": "2026-06-05T23:29:33.986705"
+  },
+  {
+    "filename": "PNEUMONIA/person1006_bacteria_2937.jpeg",
+    "label": "PNEUMONIA",
+    "x1": 65,
+    "y1": 104,
+    "x2": 109,
+    "y2": 162,
+    "id": "36",
+    "created_at": "2026-06-05T23:29:44.616562"
+  },
+  {
+    "filename": "PNEUMONIA/person1007_bacteria_2938.jpeg",
+    "label": "PNEUMONIA",
+    "x1": 55,
+    "y1": 16,
+    "x2": 90,
+    "y2": 94,
+    "id": "37",
+    "created_at": "2026-06-05T23:29:51.933537"
+  },
+  {
+    "filename": "PNEUMONIA/person1007_virus_1690.jpeg",
+    "label": "PNEUMONIA",
+    "x1": 60,
+    "y1": 77,
+    "x2": 88,
+    "y2": 136,
+    "id": "38",
+    "created_at": "2026-06-05T23:29:55.954789"
+  },
+  {
+    "filename": "PNEUMONIA/person1008_bacteria_2939.jpeg",
+    "label": "PNEUMONIA",
+    "x1": 65,
+    "y1": 58,
+    "x2": 108,
+    "y2": 123,
+    "id": "39",
+    "created_at": "2026-06-05T23:29:59.522090"
+  },
+  {
+    "filename": "PNEUMONIA/person1008_virus_1691.jpeg",
+    "label": "PNEUMONIA",
+    "x1": 45,
+    "y1": 37,
+    "x2": 96,
+    "y2": 96,
+    "id": "40",
+    "created_at": "2026-06-05T23:30:26.546469"
+  },
+  {
+    "filename": "PNEUMONIA/person1009_virus_1694.jpeg",
+    "label": "PNEUMONIA",
+    "x1": 59,
+    "y1": 60,
+    "x2": 103,
+    "y2": 119,
+    "id": "41",
+    "created_at": "2026-06-05T23:30:31.314401"
+  },
+  {
+    "filename": "PNEUMONIA/person100_virus_184.jpeg",
+    "label": "PNEUMONIA",
+    "x1": 57,
+    "y1": 67,
+    "x2": 102,
+    "y2": 146,
+    "id": "42",
+    "created_at": "2026-06-05T23:30:39.764308"
+  },
+  {
+    "filename": "PNEUMONIA/person1010_bacteria_2941.jpeg",
+    "label": "PNEUMONIA",
+    "x1": 67,
+    "y1": 67,
+    "x2": 110,
+    "y2": 124,
+    "id": "43",
+    "created_at": "2026-06-05T23:30:42.803540"
+  },
+  {
+    "filename": "PNEUMONIA/person1010_virus_1695.jpeg",
+    "label": "PNEUMONIA",
+    "x1": 22,
+    "y1": 113,
+    "x2": 75,
+    "y2": 206,
+    "id": "44",
+    "created_at": "2026-06-05T23:30:45.788499"
+  },
+  {
+    "filename": "PNEUMONIA/person1011_bacteria_2942.jpeg",
+    "label": "PNEUMONIA",
+    "x1": 54,
+    "y1": 34,
+    "x2": 114,
+    "y2": 104,
+    "id": "45",
+    "created_at": "2026-06-05T23:30:49.132665"
+  },
+  {
+    "filename": "PNEUMONIA/person1012_bacteria_2943.jpeg",
+    "label": "PNEUMONIA",
+    "x1": 48,
+    "y1": 112,
+    "x2": 104,
+    "y2": 170,
+    "id": "46",
+    "created_at": "2026-06-05T23:30:51.177187"
+  },
+  {
+    "filename": "PNEUMONIA/person1014_bacteria_2945.jpeg",
+    "label": "PNEUMONIA",
+    "x1": 52,
+    "y1": 90,
+    "x2": 101,
+    "y2": 148,
+    "id": "47",
+    "created_at": "2026-06-05T23:30:53.707132"
+  },
+  {
+    "filename": "PNEUMONIA/person1015_virus_1701.jpeg",
+    "label": "PNEUMONIA",
+    "x1": 35,
+    "y1": 127,
+    "x2": 88,
+    "y2": 190,
+    "id": "48",
+    "created_at": "2026-06-05T23:30:56.081492"
+  },
+  {
+    "filename": "PNEUMONIA/person1015_virus_1702.jpeg",
+    "label": "PNEUMONIA",
+    "x1": 106,
+    "y1": 71,
+    "x2": 139,
+    "y2": 148,
+    "id": "49",
+    "created_at": "2026-06-05T23:30:59.320635"
+  },
+  {
+    "filename": "PNEUMONIA/person1016_bacteria_2947.jpeg",
+    "label": "PNEUMONIA",
+    "x1": 54,
+    "y1": 70,
+    "x2": 101,
+    "y2": 136,
+    "id": "50",
+    "created_at": "2026-06-05T23:31:01.734733"
+  }
+]
