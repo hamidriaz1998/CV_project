@@ -127,8 +127,8 @@ Annotations are exported to `annotations.json` and `annotations_coco.json` in CO
 | **Classification** (Week 2) | ResNet50 | ROC-AUC | 0.9301 |
 | **Object Detection** (Week 3) | YOLOv8n | mAP@0.5 | 0.626 |
 | **Object Detection** (Week 3) | YOLOv8n | mAP@0.5:0.95 | 0.297 |
-| **Segmentation** (Week 4) | U-Net + SAM | mIoU | 0.74 |
-| **Segmentation** (Week 4) | U-Net + SAM | Dice | 0.82 |
+| **Segmentation** (Week 4) | U-Net + SAM | mIoU | 0.28 |
+| **Segmentation** (Week 4) | U-Net + SAM | Dice | 0.41 |
 
 ## Week 3 — Object Detection
 
